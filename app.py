@@ -12,12 +12,27 @@ load_dotenv()
 def root():
     return {"message": "Подбросьте монетку"}
 
+count = 0
+count_heads = 0
+count_tails = 0
+
 @app.get("/throw")
 def throw():
+    count += 1
     if random.randint(0, 1) == 1:
+	count_heads += 1
         return {"result": "ОРЁЛ"}
     else:
         return {"result": "РЕШКА"}
+	count_tails += 1
+
+@app.get("/stats")
+def stats()
+    return {
+	"Всего бросков": count
+	"Орел": count_heads
+	"Решка": count_tails
+    }
 
 @app.get("/health")
 def health():
