@@ -39,8 +39,8 @@ jobs:
               uses: actions/checkout@v
               with:
                 name: fastapi-service
-                    path:
-                        app.py
-                        requirements.txt
-                        RADME.md
-                    retention-days: 7
+                path:
+                    app.py
+                    requirements.txt
+                    RADME.md
+                retention-days: 7
