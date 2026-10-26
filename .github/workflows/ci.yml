@@ -37,13 +37,13 @@ jobs:
 
         steps:
             - name: Download repository
-              uses: actions/checkout@v
+              uses: actions/checkout@v4
 
             - name: Upload tested application
-              uses: actions/checkout@v
+              uses: actions/upload-art@v4
               with:
                 name: fastapi-service
-                path:
+                path: |
                     app.py
                     requirements.txt
                     RADME.md
