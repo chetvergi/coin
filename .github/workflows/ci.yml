@@ -40,7 +40,7 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Upload tested application
-              uses: actions/upload-art@v4
+              uses: actions/upload-artifact@v4
               with:
                 name: fastapi-service
                 path: |
