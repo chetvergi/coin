@@ -34,10 +34,12 @@ async def reset():
 
 @app.get("/throw")
 async def throw():
+    st_tw = int(os.getenv("STAT_TWEAK", 50))
     d = []
     for i in range(app.state.qu):
         app.state.count += 1
-        if random.randint(0, 1) == 1:
+        k = random.randint(0, 100)
+        if k <= st_tw:
             app.state.count_heads += 1
             d.append("ОРЕЛ")
         else:
@@ -48,14 +50,14 @@ async def throw():
 @app.get("/stats")
 async def stats():
     return {
-	"Всего бросков": app.state.count,
+	    "Всего бросков": app.state.count,
         "Орел": app.state.count_heads,
         "Решка": app.state.count_tails,
     }
 
 @app.get("/version")
 def version():
-    return {"version":"0.1.1"}
+    return {"version":"0.1.2"}
 
 @app.get("/health")
 def health():
@@ -66,8 +68,10 @@ def health():
 def info():
     app_name = os.getenv("APP_NAME", "Монетка")
     app_author = os.getenv("APP_AUTHOR", "Не указан")
+    stat_tweak = os.getenv("STAT_TWEAK", "Не указано")
 
     return {
         "app_name": app_name,
         "author": app_author,
+        "statistics_tweak": stat_tweak,
     }
